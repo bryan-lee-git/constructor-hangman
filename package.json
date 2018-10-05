@@ -1,0 +1,23 @@
+{
+  "name": "constructor-hangman",
+  "version": "1.0.0",
+  "description": "A Node.js command-line \"Word Guess\" game to exercise the awesomeness of js constructor functions.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bryan-lee-git/constructor-hangman.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bryan-lee-git/constructor-hangman/issues"
+  },
+  "homepage": "https://github.com/bryan-lee-git/constructor-hangman#readme",
+  "dependencies": {
+    "inquirer": "^6.2.0"
+  }
+}
