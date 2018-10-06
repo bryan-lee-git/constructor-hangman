@@ -4,3 +4,4 @@
 //   * Prompts the user for each guess and keeps track of the user's remaining guesses
 
 var inquirer = require("inquirer"); // require inquirer
+var Letter = require("./letter.js");
