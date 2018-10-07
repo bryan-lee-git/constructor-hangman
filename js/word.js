@@ -32,14 +32,14 @@ var divider = "<------------ (╯°□°)╯︵◓ ------------>"
                 this.display.push(letter.processLetter()); // push output of "processLetter to display array
             });
             this.wordLoaded = true; // set the wordLoaded variable to true
-            console.log(`\n${divider}\n\n\n${this.display.join(" ")}\n\n\nCorrect Guesses: ${this.correctGuesses}\nIncorrect Guesses: ${this.guesses.join(" ")}\n\n\n${divider}\n`); // log display to console
+            console.log(`\n\n${this.display.join(" ")}\n\n\nCorrect Guesses: ${this.correctGuesses}\nGuessed: ${this.guesses.join(" ")}\n\n\n${divider}\n`); // log display to console
         }
         else { // if a word has already been loaded but needs the current state to be logged to the console
             this.display = []; // empty the display array
             this.letters.forEach((letter) => { // iterate through the array of letter objects
                 this.display.push(letter.processLetter()); // push output of "processLetter to display array
             });
-            console.log(`\n${divider}\n\n\n${this.display.join(" ")}\n\n\nCorrect Guesses: ${this.correctGuesses}\nIncorrect Guesses: ${this.guesses.join(" ")}\n\n\n${divider}\n`); // log display to console
+            console.log(`\n\n${this.display.join(" ")}\n\n\nCorrect Guesses: ${this.correctGuesses}\nGuessed: ${this.guesses.join(" ")}\n\n\n${divider}\n`); // log display to console
         };
     };
 
@@ -50,16 +50,16 @@ var divider = "<------------ (╯°□°)╯︵◓ ------------>"
     this.checkLetter = function(userGuess) {
         var rightCount = 0;
         this.letters.forEach((letter) => { // iterate through the array of letter objects
-            if (userGuess === letter.char && !letter.guessed) { // if user's guess matches any of the letter object's char value and the letter has not already been guessed
+            if (userGuess === letter.char && !letter.guessed) { // if user's guess is correct and has not already been guessed
                 letter.guessed = true; // set it's guessed property to true
-                rightCount++;
-                this.correctGuesses++;
-                this.guesses.push(userGuess);
+                rightCount++; // increase rightCount
+                this.correctGuesses++; // increase correct guesses
+                this.guesses.push(userGuess); // push user guess to guesses array
             };
         });
-        if (rightCount === 0) {
-            this.wrongGuesses++;
-            this.guesses.push(userGuess);
+        if (rightCount === 0) { // if the guess was incorrect
+            this.wrongGuesses++; // increase wrong guesses count
+            this.guesses.push(userGuess); // push user guess to guesses array
         };
         this.displayWord(); // run displayWord to log the current state of the word to the console
     };

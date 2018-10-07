@@ -19,6 +19,7 @@
   "homepage": "https://github.com/bryan-lee-git/constructor-hangman#readme",
   "dependencies": {
     "inquirer": "^6.2.0",
-    "pokemon": "^1.2.3"
+    "pokemon": "^1.2.3",
+    "pokemon-base-stats": "^0.7.0"
   }
 }
