@@ -1,18 +1,25 @@
 //---------------------------------------------------------------------------------
-// LETTER CONSTRUCTOR: creates unique objects for letters
+// LETTER CONSTRUCTOR CONTROLLER: creates unique objects for letters
 //---------------------------------------------------------------------------------
 
-var Letter = function(letter) {
-    // string value to store the underlying character for the letter
-    this.char = letter;
-    // boolean value that stores whether that letter has been guessed yet
-    this.guessed = false;
-    // function that returns the underlying character if the letter has been guessed or an underscore if the letter has not been guessed
-    this.processLetter = function() {
-        if (this.guessed) {
-            return this.char.toString();
-        } else {
-            return "_";
+var Letter = function(letter) { // begin new letter constructor
+
+    //---------------------------------------------------------------------------------
+    // LETTER OBJECT KEY/PAIR VALUES
+    //---------------------------------------------------------------------------------
+
+    this.char = letter; // variable for underlying letter character
+    this.guessed = false; // boolean: has letter has been guessed yet?
+
+    //---------------------------------------------------------------------------------
+    // METHOD: processes letter and returns character based on guessed/not guessed
+    //---------------------------------------------------------------------------------
+
+    this.processLetter = function() { // return result for guessed or not
+        if (this.guessed) { // if guessed is true
+            return this.char.toString(); // return the letter character
+        } else { // if not true
+            return "_"; // return an underscore
         };
     };
 };

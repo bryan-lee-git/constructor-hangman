@@ -1,10 +1,11 @@
 //---------------------------------------------------------------------------------
-// WORD CONSTRUCTOR: uses "Letter" constructor to create object for current word
+// WORD CONSTRUCTOR CONTROLLER: uses "Letter" constructor to create object for current word
 //---------------------------------------------------------------------------------
 
-var Letter = require("./letter.js"); // require the letter constructor file
+const Letter = require("./letter.js"); // require the letter constructor file
+const divider = "<------------ (╯°□°)╯︵◓ ------------>";
+
 var Word = function(word) { // begin "Word" constructor function
-var divider = "<------------ (╯°□°)╯︵◓ ------------>"
 
     //---------------------------------------------------------------------------------
     // OBJECT KEY/PAIR VALUES
@@ -15,11 +16,11 @@ var divider = "<------------ (╯°□°)╯︵◓ ------------>"
     this.letters = []; // create an array to hold the object for each letter
     this.display = []; // create an array to hold the current state of guess word at any given point in the game
     this.correctGuesses = 0; // number of user's correct guesses
-    this.wrongGuesses = 0;
+    this.wrongGuesses = 0; // number of wrong guesses
     this.guesses = []; // all user guessed letters
 
     //---------------------------------------------------------------------------------
-    // DISPLAY WORD METHOD: logs current state of word to console throughout game
+    // METHOD: logs current state of word to console throughout game
     //---------------------------------------------------------------------------------
 
     this.displayWord = function() { // begin displayWord function
