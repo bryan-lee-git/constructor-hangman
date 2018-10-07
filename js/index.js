@@ -1,18 +1,18 @@
 //------------------------------------------------------------------------------
-// MAIN APP CONTROLLER: contructor word guess + pokemon catching game
+// MAIN CONTROLLER: contructor word guess + pokemon catching game
 //------------------------------------------------------------------------------
 
 const inquirer = require("inquirer"); // require inquirer package
-const Word = require("./word.js"); // require word constructor controller
+const Word = require("./word.js"); // require word constructor
 const wordGen = require("./wordgen.js"); // require random word/pokemon name + pokemon constructor controller
 const divider = "<------------ (╯°□°)╯︵◓ ------------>"; // divider to be used throughout in console logs
 const gameInfo = `${divider}\n\nPOKÉMON CONSTRUCTOR HANGMAN\n\nCorrectly guess the pokémon's name to\ncatch it. Gotta catch 'em all!\n\nA node.js, closure, callback, and constructor function project. \nUofU/Trilogy Full-Stack Bootcamp. \n\nAuthor: Bryan Lee \nCreated: Oct 6, 2018. \nhttps://bryan-lee-git-github.io \n\n${divider}`; // game intro blurb / instructions
-var numCaught = 0; // set counter for number of pokemon caught/rounds won
-var pokemonCaught = []; // set empty array to hold names of all pokemon caught this game
-var roundNum = 0; // set a counter for the game rounds
+var numCaught = 0; // set counter for # of pokemon caught/rounds won
+var pokemonCaught = []; // set empty array for names of pokemon caught this game
+var roundNum = 0; // set a counter for the # of game rounds
 
 //------------------------------------------------------------------------------
-// FUNCTION: intialize the program, continue playing
+// MAIN GAME - FUNCTION: intialize the program, continue playing
 //------------------------------------------------------------------------------
 
 function game() { // begin initialize game function
@@ -37,7 +37,7 @@ function game() { // begin initialize game function
 }; game(); // initial call of game function on program load up
 
 //------------------------------------------------------------------------------
-// FUNCTION: begin new game with new word
+// EACH ROUND - FUNCTION: begin new game with new word
 //------------------------------------------------------------------------------
 
 function round() { // begin main game function
