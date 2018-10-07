@@ -1,27 +1,75 @@
-// Contains a constructor, Word that depends on the Letter constructor. This is used to create an object representing the current word the user is attempting to guess. That means the constructor should define:
+//---------------------------------------------------------------------------------
+// WORD CONSTRUCTOR: uses "Letter" constructor to create object for current word
+//---------------------------------------------------------------------------------
 
-//   * An array of `new` Letter objects representing the letters of the underlying word
-//   * A function that returns a string representing the word. This should call the function on each letter object (the first function defined in `Letter.js`) that displays the character or an underscore and concatenate those together.
-//   * A function that takes a character as an argument and calls the guess function on each letter object (the second function defined in `Letter.js`)
+var Letter = require("./letter.js"); // require the letter constructor file
+var Word = function(word) { // begin "Word" constructor function
+var divider = "<------------ (╯°□°)╯︵◓ ------------>"
 
-var Letter = require("./letter.js");
+    //---------------------------------------------------------------------------------
+    // OBJECT KEY/PAIR VALUES
+    //---------------------------------------------------------------------------------
 
-var Word = function(word) { 
-    this.wordArray = word.split("");
-    this.letters = [];
-    this.display = [];
-    this.displayWord = function() {
-        this.wordArray.forEach((letter) => {
-            var newLetter = new Letter(letter);
-            this.letters.push(newLetter);
-        });
-        this.letters.forEach((letter) => {
-            this.display.push(letter.processLetter());
-        });
-        console.log(`\n${this.display.join(" ")}\n`);
+    this.wordLoaded = false; // wordLoaded boolean. initially set to false
+    this.wordArray = word.split(""); // take the word and turn its letters into an array
+    this.letters = []; // create an array to hold the object for each letter
+    this.display = []; // create an array to hold the current state of guess word at any given point in the game
+    this.correctGuesses = 0; // number of user's correct guesses
+    this.guesses = []; // all user guessed letters
+
+    //---------------------------------------------------------------------------------
+    // DISPLAY WORD METHOD: logs current state of word to console throughout game
+    //---------------------------------------------------------------------------------
+
+    this.displayWord = function() { // begin displayWord function
+        if (!this.wordLoaded) { // if a word is being initialized
+            this.wordArray.forEach((letter) => { // interate through the array of letters that make up the word
+                var newLetter = new Letter(letter); // construct a letter object for every letter
+                this.letters.push(newLetter); // store each object to the letters array
+            });
+            this.letters.forEach((letter) => { // iterate through the array of letter objects
+                this.display.push(letter.processLetter()); // push output of "processLetter to display array
+            });
+            this.wordLoaded = true; // set the wordLoaded variable to true
+            console.log(`\n${divider}\n\n\n${this.display.join(" ")}\n\n\nCorrect Guesses: ${this.correctGuesses}\nIncorrect Guesses: ${this.guesses.join(" ")}\n\n\n${divider}\n`); // log display to console
+        }
+        else { // if a word has already been loaded but needs the current state to be logged to the console
+            this.display = []; // empty the display array
+            this.letters.forEach((letter) => { // iterate through the array of letter objects
+                this.display.push(letter.processLetter()); // push output of "processLetter to display array
+            });
+            console.log(`\n${divider}\n\n\n${this.display.join(" ")}\n\n\nCorrect Guesses: ${this.correctGuesses}\nIncorrect Guesses: ${this.guesses.join(" ")}\n\n\n${divider}\n`); // log display to console
+        };
     };
+
+    //---------------------------------------------------------------------------------
+    // METHOD: checks user guess against current guess word and re-logs
+    //---------------------------------------------------------------------------------
+
+    this.checkLetter = function(userGuess) {
+        var rightCount = 0;
+        this.letters.forEach((letter) => { // iterate through the array of letter objects
+            if (userGuess === letter.char && !letter.guessed) { // if user's guess matches any of the letter object's char value and the letter has not already been guessed
+                letter.guessed = true; // set it's guessed property to true
+                rightCount++;
+                this.correctGuesses++;
+                this.guesses.push(userGuess);
+            };
+        });
+        if (rightCount === 0) {
+            this.guesses.push(userGuess);
+        };
+        this.displayWord(); // run displayWord to log the current state of the word to the console
+    };
+
+    //---------------------------------------------------------------------------------
 };
 
-var newWord = new Word("elephant");
-newWord.displayWord();
+//---------------------------------------------------------------------------------
+// EXPORTS
+//---------------------------------------------------------------------------------
+
+module.exports = Word;
+
+
 
