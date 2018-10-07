@@ -57,12 +57,16 @@ function runGame() {
             { name: "guess", message: "Guess a letter..." }
         ]).then((answers) => {
             currentWord.checkLetter(answers.guess);
+            var pokeball = currentWord.wordArray.join("").toUpperCase();
             if (currentWord.correctGuesses === currentWord.letters.length) {
-                var pokeball = currentWord.wordArray.join("").toUpperCase();
                 pokemonCaught.push(pokeball);
                 roundNum++;
                 numCaught++;
                 console.log(`${divider}\n\nNICE! YOU CAUGHT A ${pokeball}!!!\nYou've caught ${numCaught} pokemon!\nPokedex: ${pokemonCaught.join(", ")}\n\n${divider}\n`);
+                startGame();
+            } else if (currentWord.wrongGuesses === 10) {
+                console.log(`OH NO! ${pokeball} GOT AWAY!!!\nYou've caught ${numCaught} pokemon!\nPokedex: ${pokemonCaught.join(", ")}\n\n${divider}\n`);
+                roundNum++;
                 startGame();
             } else playRound();
         });

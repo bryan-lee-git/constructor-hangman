@@ -15,6 +15,7 @@ var divider = "<------------ (╯°□°)╯︵◓ ------------>"
     this.letters = []; // create an array to hold the object for each letter
     this.display = []; // create an array to hold the current state of guess word at any given point in the game
     this.correctGuesses = 0; // number of user's correct guesses
+    this.wrongGuesses = 0;
     this.guesses = []; // all user guessed letters
 
     //---------------------------------------------------------------------------------
@@ -57,6 +58,7 @@ var divider = "<------------ (╯°□°)╯︵◓ ------------>"
             };
         });
         if (rightCount === 0) {
+            this.wrongGuesses++;
             this.guesses.push(userGuess);
         };
         this.displayWord(); // run displayWord to log the current state of the word to the console
