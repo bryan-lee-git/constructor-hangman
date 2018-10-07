@@ -6,7 +6,7 @@ const inquirer = require("inquirer"); // require inquirer package
 const Word = require("./word.js"); // require Word constructor package
 const pokemon = require("pokemon"); // require random pokemon generator package
 var divider = "<------------ (╯°□°)╯︵◓ ------------>"
-const gameInfo = `${divider}\n\nPOKEMON CONSTRUCTOR HANGMAN\n\nCorrectly guess the pokemon's name name to catch it. Gotta catch 'em all!\n\nA node.js, closure, callback, and object \nconstructor function homework project. UofU/Trilogy Full-Stack Bootcamp. \n\nAuthor: Bryan Lee \nCreated: Oct 6, 2018. \nhttps://bryan-lee-git-github.io \n\n${divider}`
+const gameInfo = `${divider}\n\nPOKEMON CONSTRUCTOR HANGMAN\n\nCorrectly guess the pokemon's name to catch it. Gotta catch 'em all!\n\nA node.js, closure, callback, and object \nconstructor function homework project. UofU/Trilogy Full-Stack Bootcamp. \n\nAuthor: Bryan Lee \nCreated: Oct 6, 2018. \nhttps://bryan-lee-git-github.io \n\n${divider}`
 var numCaught = 0;
 var pokemonCaught = [];
 var roundNum = 0;
@@ -17,7 +17,6 @@ var roundNum = 0;
 
 function wordGen() { // generate random pokemon
     var randomWord = pokemon.random().toLowerCase(); // set to variable
-    console.log(randomWord);
     return randomWord; // return the randomWord variable
 };
 
