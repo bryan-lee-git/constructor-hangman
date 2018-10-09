@@ -8,7 +8,7 @@ var Letter = function(letter) { // begin new letter constructor
 };
 
 //---------------------------------------------------------------------------------
-// GUESSED? - LETTER PROTOTYPE METHOD: returns character based on guessed/not guessed
+// PROCESS LETTER - LETTER PROTOTYPE METHOD: returns character based on guessed/not guessed
 //---------------------------------------------------------------------------------
 
 Letter.prototype.processLetter = function() { // return result for guessed or not

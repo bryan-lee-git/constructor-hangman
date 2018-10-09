@@ -7,7 +7,7 @@ const divider = "<------------ (╯°□°)╯︵◓ ------------>";
 
 var Word = function(word) { // begin "Word" constructor function
     this.wordLoaded = false; // wordLoaded boolean. initially set to false
-    this.wordArray = word.split(""); // take the word and turn its letters into an array
+    this.wordArray = word.replace(/[^0-9a-z-A-Z ]/g, "").replace(/ +/, " ").split(""); // take the word and turn its letters into an array
     this.letters = []; // create an array to hold the object for each letter
     this.display = []; // create an array to hold the current state of guess word at any given point in the game
     this.correctGuesses = 0; // number of user's correct guesses
@@ -16,7 +16,7 @@ var Word = function(word) { // begin "Word" constructor function
 };
 
 //---------------------------------------------------------------------------------
-// DISPLAY - WORD PROTOTYPE METHOD: logs current state of word to console throughout game
+// DISPLAY WORD - WORD PROTOTYPE METHOD: logs current state of word to console
 //---------------------------------------------------------------------------------
 
 Word.prototype.displayWord = function() { // begin displayWord function
@@ -30,8 +30,7 @@ Word.prototype.displayWord = function() { // begin displayWord function
         });
         this.wordLoaded = true; // set the wordLoaded variable to true
         console.log(`\n\n${this.display.join(" ")}\n\n\nCorrect Guesses: ${this.correctGuesses}\nGuessed: ${this.guesses.join(" ")}\n\n\n${divider}\n`); // log display to console
-    }
-    else { // if a word has already been loaded but needs the current state to be logged to the console
+    } else { // if a word has already been loaded but needs the current state to be logged to the console
         this.display = []; // empty the display array
         this.letters.forEach((letter) => { // iterate through the array of letter objects
             this.display.push(letter.processLetter()); // push output of "processLetter to display array

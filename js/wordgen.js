@@ -32,11 +32,17 @@ Pokemon.prototype.printStats = function() { // print all stats in object like so
 //------------------------------------------------------------------------------
 
 function wordGen() { // generate random pokemon and create stat object
-    var randomWord = pokemonData.random(); // set to variable
-    var pokeStats = baseStats.getByName({ name: randomWord }); // get stats for randomly chosen pokemon
-    var pokemon = new Pokemon(randomWord.toLowerCase(), pokeStats[0], pokeStats[1], pokeStats[2], pokeStats[3], pokeStats[4], pokeStats[5]); // create a pokemon object w/ acquired data
-    return pokemon;
+    var randomNum = Math.floor(Math.random() * (400 - 1) + 1);
+    var randomPoke = pokemonData.getName(randomNum); // set to variable
+    var pokeStats = baseStats.getByName({ name: randomPoke }); // get stats for randomly chosen pokemon
+    if (pokeStats === undefined) {
+        wordGen();
+    } else {
+        var pokemon = new Pokemon(randomPoke.toLowerCase(), pokeStats[0], pokeStats[1], pokeStats[2], pokeStats[3], pokeStats[4], pokeStats[5]); // create a pokemon object w/ acquired data
+        return pokemon;
+    };
 };
+
 
 //------------------------------------------------------------------------------
 // MODULE EXPORTS
